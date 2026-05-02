@@ -1,0 +1,59 @@
+.particleField {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: clip;
+  isolation: isolate;
+}
+
+.particle {
+  position: absolute;
+  top: var(--particle-top);
+  left: var(--particle-left);
+  width: var(--particle-size);
+  height: var(--particle-size);
+  border-radius: 50%;
+  opacity: var(--particle-opacity);
+  background:
+    radial-gradient(circle at 28% 26%, rgb(var(--warm-white-rgb) / 0.82), transparent 22%),
+    radial-gradient(circle at 38% 36%, color-mix(in srgb, var(--particle-color) 68%, transparent), transparent 48%),
+    radial-gradient(circle at 68% 64%, color-mix(in srgb, var(--particle-color) 48%, transparent), transparent 70%);
+  box-shadow:
+    0 0 2.2rem color-mix(in srgb, var(--particle-color) 22%, transparent),
+    0 0 5rem color-mix(in srgb, var(--particle-color) 12%, transparent);
+  transform: translate3d(0, 0, 0);
+  mix-blend-mode: multiply;
+  animation: particleDrift var(--particle-duration) ease-in-out infinite alternate;
+  animation-delay: var(--particle-delay);
+}
+
+.particle:nth-child(3n) {
+  animation-name: particleDriftWide;
+}
+
+.particle:nth-child(5n) {
+  mix-blend-mode: screen;
+}
+
+@keyframes particleDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(0.94) rotate(0deg); }
+  100% { transform: translate3d(2.8rem, -3.8rem, 0) scale(1.08) rotate(12deg); }
+}
+
+@keyframes particleDriftWide {
+  0%   { transform: translate3d(0, 0, 0) scale(0.92) rotate(0deg); }
+  100% { transform: translate3d(-4.2rem, 2.4rem, 0) scale(1.06) rotate(-10deg); }
+}
+
+@media (max-width: 767px) {
+  .particleField {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+  }
+}

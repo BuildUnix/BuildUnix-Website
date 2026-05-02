@@ -1,0 +1,365 @@
+/* ── Hero ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 3;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(4.5rem, 7vw, 7rem);
+  background:
+    radial-gradient(circle at 76% 20%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 32rem),
+    var(--bg-grad-1);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: linear-gradient(180deg, black, transparent 84%);
+  pointer-events: none;
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 1.05fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 42rem;
+}
+
+.heroTitle {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.97;
+}
+
+.heroBody {
+  max-width: 47rem;
+  margin: 1.35rem 0 0;
+  color: var(--text-2);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.heroShowcase {
+  width: min(100%, 42rem);
+  justify-self: end;
+}
+
+.heroLink {
+  min-height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-on-bg);
+  text-underline-offset: 0.34rem;
+  transition: color 0.2s;
+}
+.heroLink:hover { color: var(--accent-on-bg); }
+
+/* ── Reasons ────────────────────────────────────────── */
+.reasonsSection {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.stickyIntro {
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+
+.reasonCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.reasonCard {
+  min-height: 16rem;
+  padding: clamp(1.4rem, 2.8vw, 1.8rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s, transform 0.25s var(--ease-out);
+}
+.reasonCard:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.reasonCard > span,
+.moatCard > span {
+  display: block;
+  color: var(--accent-on-bg);
+  font-family: var(--ff-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.reasonCard h3,
+.fitCard h3,
+.moatCard h3 {
+  margin: 1rem 0 0.75rem;
+  color: var(--text);
+  font-family: var(--ff-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.reasonCard p,
+.fitCard p,
+.moatCard p {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* ── Stats ──────────────────────────────────────────── */
+.statsSection {
+  padding: 0 0 clamp(5rem, 8vw, 8rem);
+  background: var(--bg-grad-1);
+  border-top: 1px solid var(--border);
+}
+
+.statsShell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-2xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.statsIntro {
+  align-self: center;
+}
+
+.statsTitle {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--ff-display);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.statCard {
+  min-height: 11rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--elevated);
+  transition: border-color 0.2s;
+}
+.statCard:hover { border-color: var(--border-strong); }
+
+.statCard strong {
+  display: block;
+  color: var(--accent-on-bg);
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+.statCard p {
+  margin: 0.85rem 0 0;
+  color: var(--text-2);
+  line-height: 1.65;
+  font-size: 13px;
+}
+
+/* ── Fit ────────────────────────────────────────────── */
+.fitSection {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.fitGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.fitCopy {
+  position: sticky;
+  top: calc(var(--header-height) + 1.5rem);
+}
+
+.fitCards {
+  display: grid;
+  gap: 1rem;
+}
+
+.fitCard {
+  padding: clamp(1.35rem, 2.8vw, 1.8rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s, transform 0.25s var(--ease-out);
+}
+.fitCard:hover {
+  border-color: var(--border-strong);
+  transform: translateX(3px);
+}
+
+/* ── Moat ───────────────────────────────────────────── */
+.moatSection {
+  background: var(--bg-grad-1);
+  border-top: 1px solid var(--border);
+}
+
+.sectionIntro {
+  max-width: 62rem;
+}
+
+.moatGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.moatCard {
+  min-height: 17rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s, transform 0.25s var(--ease-out);
+}
+.moatCard:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+/* ── CTA ────────────────────────────────────────────── */
+.ctaSection {
+  padding: clamp(5rem, 7vw, 7rem) 0;
+  background:
+    radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 28rem),
+    var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.ctaCard {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: clamp(2rem, 5vw, 4rem);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-2xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.ctaCard h2 {
+  max-width: 16ch;
+  margin: 0;
+  color: var(--text);
+  font-family: var(--ff-display);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.ctaCard p {
+  max-width: 43rem;
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 991px) {
+  .heroGrid,
+  .reasonsGrid,
+  .statsShell,
+  .fitGrid,
+  .moatGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stickyIntro,
+  .fitCopy {
+    position: static;
+  }
+
+  .reasonCards {
+    grid-template-columns: 1fr;
+  }
+
+  .heroShowcase {
+    width: 100%;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 767px) {
+  .heroTitle,
+  .statsTitle,
+  .ctaCard h2 {
+    font-size: clamp(2.4rem, 11vw, 3.6rem);
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .moatGrid {
+    grid-template-columns: 1fr;
+  }
+}
