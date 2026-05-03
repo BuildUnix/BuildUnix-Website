@@ -395,7 +395,7 @@ function StepVisual({ id }) {
     ),
     report: (
       <div className={styles.visualReport}>
-        <div className={styles.vrHeader}><span className={styles.vrTag}>AI DAILY REPORT</span><span className={styles.vrTime}>Delivered 9:00 PM</span></div>
+        <div className={styles.vrHeader}><span className={styles.vrTag}>DAILY REPORT</span><span className={styles.vrTime}>Delivered 9:00 PM</span></div>
         <div className={styles.vrLines}>
           {["Site activity summary","Photo gallery (48 images)","3 open snags","Progress: 63%"].map(l => (
             <div key={l} className={styles.vrLine}>{l}</div>

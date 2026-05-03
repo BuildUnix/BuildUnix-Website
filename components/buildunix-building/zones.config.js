@@ -82,7 +82,7 @@ export const TOWER_ZONES = [
     id: 'zone_finishing',
     phase: 'PHASE 09–12',
     title: 'Finishing & Interior',
-    description: 'At 9 PM, AI reads all phase completions and generates the night report. Zero manual effort.',
+    description: 'At 9 PM, the system reads all phase completions and generates the night report. Zero manual effort.',
     height: 0.8,
     width: 2.9,
     depth: 2.5,

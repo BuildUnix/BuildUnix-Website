@@ -54,7 +54,7 @@ export const BUILDINGS = [
     z: 18,
     currentPhase: 8,
     status: 'complete',
-    description: 'All phases complete. AI-generated handover report delivered. Snag count: 0 open. Facility management mode active.',
+    description: 'All phases complete. System-generated handover report delivered. Snag count: 0 open. Facility management mode active.',
     isInteractive: true
   },
   {
