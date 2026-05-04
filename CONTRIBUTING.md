@@ -1,6 +1,6 @@
-# Contributing to BuildUnix
+# Contributing to BuildUNIX
 
-Thank you for your interest in contributing to the BuildUnix marketing website.
+Thank you for your interest in contributing to the BuildUNIX marketing website.
 
 ## Workflow
 

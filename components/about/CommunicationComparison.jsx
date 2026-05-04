@@ -27,7 +27,7 @@ export default function CommunicationComparison() {
 
           {/* BuildUNIX Side */}
           <div className={`${styles.side} ${styles.sideBuildunix}`}>
-            <div className={styles.sideLabel}>THE BUILDUNIX WAY</div>
+            <div className={styles.sideLabel}>THE BuildUNIX WAY</div>
             <div className={styles.statusStack}>
               <div className={styles.statusCard}>
                 <div className={styles.statusHeader}>

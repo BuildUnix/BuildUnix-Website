@@ -1,6 +1,6 @@
-# BuildUnix Marketing Website
+# BuildUNIX Marketing Website
 
-The official, high-fidelity marketing platform for BuildUnix, featuring interactive 3D urban visualizations and a token-driven design system.
+The official, high-fidelity marketing platform for BuildUNIX, featuring interactive 3D urban visualizations and a token-driven design system.
 
 ## 🚀 Key Features
 

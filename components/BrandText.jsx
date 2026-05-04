@@ -1,6 +1,6 @@
 import BrandWordmark from "@/components/BrandWordmark";
 
-const BRAND_REGEX = /(BuildUNIX|BuildUnix)/g;
+const BRAND_REGEX = /(BuildUNIX)/g;
 
 export default function BrandText({
   text,
@@ -18,7 +18,7 @@ export default function BrandText({
       return null;
     }
 
-    if (part === "BuildUNIX" || part === "BuildUnix") {
+    if (part === "BuildUNIX") {
       return (
         <BrandWordmark
           key={`brand-${index}`}

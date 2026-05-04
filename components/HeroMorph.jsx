@@ -81,7 +81,7 @@ export default function HeroMorph() {
           className={styles.word}
           aria-hidden="true"
         >
-          {(word === "BuildUNIX" || word === "BuildUnix"
+          {(word === "BuildUNIX"
             ? [
                 { value: "Build", className: "" },
                 { value: "UNIX", className: styles.unixCharacter }
