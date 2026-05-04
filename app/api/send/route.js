@@ -9,7 +9,9 @@ export async function POST(req) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
-    const { name, email, company, role, size, intent, msg } = body;
+    const { name, email, company, role, size, intent, msg, siteLocation, siteDescription } = body;
+
+    const logoUrl = "https://build-unix-website.vercel.app/brand/buildunix-logo.png";
 
     // Send both emails in parallel
     const [notification, acknowledgement] = await Promise.all([
@@ -20,6 +22,9 @@ export async function POST(req) {
         subject: `New Pilot Request: ${company}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 40px; border-radius: 12px; color: #161210;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 150px; height: auto;" />
+            </div>
             <h2 style="color: #E8690A; border-bottom: 2px solid #E8690A; padding-bottom: 12px; margin-bottom: 24px;">New Pilot Request</h2>
             
             <table style="width: 100%; border-collapse: collapse;">
@@ -47,9 +52,18 @@ export async function POST(req) {
                 <td style="padding: 8px 0; color: #666;"><strong>Primary Goal</strong></td>
                 <td style="padding: 8px 0;">${intent}</td>
               </tr>
+              <tr>
+                <td style="padding: 8px 0; color: #666;"><strong>Site Location</strong></td>
+                <td style="padding: 8px 0;">${siteLocation}</td>
+              </tr>
             </table>
 
-            <div style="margin-top: 32px; padding: 20px; background: #f8f8f8; border-radius: 8px; border-left: 4px solid #E8690A;">
+            <div style="margin-top: 24px; padding: 20px; background: #f8f8f8; border-radius: 8px; border-left: 4px solid #E8690A;">
+              <strong style="display: block; margin-bottom: 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Site Description</strong>
+              <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${siteDescription || "No details provided."}</p>
+            </div>
+
+            <div style="margin-top: 24px; padding: 20px; background: #f8f8f8; border-radius: 8px; border-left: 4px solid #666;">
               <strong style="display: block; margin-bottom: 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Pain Points</strong>
               <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${msg || "No additional details provided."}</p>
             </div>
@@ -69,13 +83,16 @@ export async function POST(req) {
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; color: #161210;">
             <div style="background-color: #161210; padding: 40px; text-align: center;">
-              <h1 style="color: #E8690A; margin: 0; font-size: 28px; letter-spacing: -0.02em;">BuildUNIX</h1>
-              <p style="color: #999; margin: 10px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Digitising Construction Execution</p>
+              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 200px; height: auto;" />
+              <p style="color: #999; margin: 15px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Digitising Construction Execution</p>
             </div>
             <div style="padding: 40px;">
               <h2 style="font-size: 22px; margin-top: 0;">Thanks for your interest, ${name.split(" ")[0]}.</h2>
               <p style="line-height: 1.6; color: #444;">
-                We've received your request for a BuildUNIX pilot for <strong>${company}</strong>. Our team is reviewing your project details and goal to <em>${intent.toLowerCase()}</em>.
+                We've received your request for a BuildUNIX pilot for <strong>${company}</strong> at your <strong>${siteLocation}</strong> project.
+              </p>
+              <p style="line-height: 1.6; color: #444;">
+                Our team is reviewing your project details: <em>"${siteDescription || "Standard pilot configuration"}"</em>.
               </p>
               <p style="line-height: 1.6; color: #444;">
                 A BuildUNIX engineer will reach out to you at this email address within 24 hours to schedule your walkthrough and discuss the next steps for your 30-day free pilot.

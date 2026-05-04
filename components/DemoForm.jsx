@@ -7,6 +7,7 @@ export default function DemoForm({ className }) {
   const [form, setForm] = useState({
     name: "", email: "", company: "", role: "",
     size: "Mid (5–20 sites)", intent: "", msg: "",
+    siteLocation: "", siteDescription: "",
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle, sending, success, error
@@ -34,6 +35,7 @@ export default function DemoForm({ className }) {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Invalid email";
     if (!form.company.trim()) errs.company = "Required";
     if (!form.intent) errs.intent = "Pick one";
+    if (!form.siteLocation.trim()) errs.siteLocation = "Required";
     setErrors(errs);
 
     if (Object.keys(errs).length === 0) {
@@ -143,11 +145,27 @@ export default function DemoForm({ className }) {
           </div>
           <div className={styles.fieldErr}>{errors.intent}</div>
         </div>
+        <div className={`${styles.field} ${styles.fieldFull} ${errors.siteLocation ? styles.fieldError : ""}`}>
+          <label className={styles.fieldLabel}>Site location</label>
+          <input className={styles.fieldInput} type="text" placeholder="e.g. Hitech City, Hyderabad" value={form.siteLocation} onChange={update("siteLocation")} disabled={status === "sending"} />
+          <div className={styles.fieldErr}>{errors.siteLocation}</div>
+        </div>
+        <div className={`${styles.field} ${styles.fieldFull}`}>
+          <label className={styles.fieldLabel}>Site description</label>
+          <textarea
+            className={styles.fieldTextarea}
+            placeholder="e.g. 3 blocks, 450 residential units, RCC framework stage..."
+            value={form.siteDescription}
+            onChange={update("siteDescription")}
+            disabled={status === "sending"}
+          />
+          <div className={styles.fieldErr}></div>
+        </div>
         <div className={`${styles.field} ${styles.fieldFull}`}>
           <label className={styles.fieldLabel}>Anything else?</label>
           <textarea
             className={styles.fieldTextarea}
-            placeholder="Tell us about current pain points, number of active sites, timelines…"
+            placeholder="Tell us about current pain points, timelines…"
             value={form.msg}
             onChange={update("msg")}
             disabled={status === "sending"}
