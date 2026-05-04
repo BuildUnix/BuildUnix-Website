@@ -46,7 +46,7 @@ export default function ContactExperience() {
               </h2>
               <p className={styles.formBody}>
                 Tell us a little about your firm and project. We&apos;ll reach
-                out within 24 hours.
+                out to you shortly.
               </p>
               <DemoForm className="" />
             </div>
@@ -69,7 +69,7 @@ export default function ContactExperience() {
                   Prefer email? Reach us at{" "}
                   <a href={`mailto:${companyEmail}`}>{companyEmail}</a>
                 </p>
-                <p>We respond within 24 hours.</p>
+                <p>We respond ASAP.</p>
               </div>
             </div>
           </Reveal>

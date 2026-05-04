@@ -7,10 +7,10 @@ import Reveal from "@/components/Reveal";
 import SplitTextReveal from "@/components/SplitTextReveal";
 import styles from "@/app/about/about.module.css";
 import {
-  whyBuildUnixFit,
-  whyBuildUnixMoat,
-  whyBuildUnixReasons,
-  whyBuildUnixStats
+  whyBuildUNIXFit,
+  whyBuildUNIXMoat,
+  whyBuildUNIXReasons,
+  whyBuildUNIXStats
 } from "@/lib/site-content";
 
 import CommunicationComparison from "@/components/about/CommunicationComparison";
@@ -59,7 +59,7 @@ export default function AboutExperience() {
           </div>
 
           <div className={styles.reasonCards}>
-            {whyBuildUnixReasons.map((reason, index) => (
+            {whyBuildUNIXReasons.map((reason, index) => (
               <Reveal
                 key={reason.title}
                 as="article"
@@ -91,7 +91,7 @@ export default function AboutExperience() {
             </div>
 
             <div className={styles.statsGrid}>
-              {whyBuildUnixStats.map((item, index) => (
+              {whyBuildUNIXStats.map((item, index) => (
                 <Reveal key={item.value} className={styles.statCard} delay={index * 0.08}>
                   <strong>{item.value}</strong>
                   <p><BrandText text={item.label} /></p>
@@ -115,7 +115,7 @@ export default function AboutExperience() {
           </Reveal>
 
           <div className={styles.fitCards}>
-            {whyBuildUnixFit.map((item, index) => (
+            {whyBuildUNIXFit.map((item, index) => (
               <Reveal key={item.title} className={styles.fitCard} delay={index * 0.09} x={50}>
                 <h3><BrandText text={item.title} /></h3>
                 <p><BrandText text={item.body} /></p>
@@ -138,7 +138,7 @@ export default function AboutExperience() {
           </div>
 
           <div className={styles.moatGrid}>
-            {whyBuildUnixMoat.map((item, index) => (
+            {whyBuildUNIXMoat.map((item, index) => (
               <Reveal key={item.title} className={styles.moatCard} delay={index * 0.08}>
                 <span>0{index + 1}</span>
                 <h3><BrandText text={item.title} /></h3>

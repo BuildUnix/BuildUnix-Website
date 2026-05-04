@@ -1,5 +1,7 @@
 import { DM_Mono, Epilogue, Syne } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/app/globals.css";
 import PageTransition from "@/components/PageTransition";
 import ParticlesBackground from "@/components/ParticlesBackground";
@@ -122,6 +124,8 @@ export default function RootLayout({ children }) {
           data-project-id="mDOm7vPZd4sZ5qup3Z88"
           strategy="afterInteractive"
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
