@@ -87,7 +87,7 @@ export async function POST(req) {
                 We've received your request for a BuildUNIX pilot for <strong>${company}</strong> at your <strong>${siteLocation}</strong> project. Our team is reviewing your details and will be in touch shortly.
               </p>
               <p style="line-height: 1.6; color: #444;">
-                A BuildUNIX engineer will reach out to you at this email address within 24 hours to schedule your walkthrough and discuss the next steps for your 30-day free pilot.
+                A BuildUNIX engineer will reach out to you at this email address shortly to schedule your walkthrough and discuss the next steps for your 30-day free pilot.
               </p>
               
               <div style="margin: 32px 0; padding: 24px; background-color: #f8f8f8; border-radius: 8px; border-left: 4px solid #E8690A;">
