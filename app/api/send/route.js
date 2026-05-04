@@ -22,8 +22,8 @@ export async function POST(req) {
         subject: `New Pilot Request: ${company}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 40px; border-radius: 12px; color: #161210;">
-            <div style="text-align: center; margin-bottom: 30px;">
-              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 150px; height: auto;" />
+            <div style="text-align: center; margin-bottom: 30px; padding: 20px; background-color: #fcfcfc; border-radius: 8px;">
+              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 180px; height: auto;" />
             </div>
             <h2 style="color: #E8690A; border-bottom: 2px solid #E8690A; padding-bottom: 12px; margin-bottom: 24px;">New Pilot Request</h2>
             
@@ -77,8 +77,8 @@ export async function POST(req) {
         subject: `Pilot Request Received — BuildUNIX`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; color: #161210;">
-            <div style="background-color: #161210; padding: 40px; text-align: center;">
-              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 200px; height: auto;" />
+            <div style="background-color: #fcfcfc; padding: 40px; text-align: center; border-bottom: 1px solid #eee;">
+              <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 220px; height: auto;" />
               <p style="color: #999; margin: 15px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Digitising Construction Execution</p>
             </div>
             <div style="padding: 40px;">
@@ -109,7 +109,7 @@ export async function POST(req) {
               </p>
             </div>
             <div style="background-color: #fcfcfc; padding: 20px; text-align: center; font-size: 12px; color: #bbb; border-top: 1px solid #eee;">
-              Bengaluru · Hyderabad · India
+              Hyderabad · India
             </div>
           </div>
         `,
