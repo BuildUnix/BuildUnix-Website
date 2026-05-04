@@ -1,12 +1,12 @@
 import { Resend } from "resend";
 
 export async function POST(req) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-
   if (!process.env.RESEND_API_KEY) {
     console.error("CRITICAL: RESEND_API_KEY is not defined in environment variables.");
-    return Response.json({ error: "Server configuration error: Missing API Key" }, { status: 500 });
+    return Response.json({ error: "Server configuration error: Missing API Key in Vercel." }, { status: 500 });
   }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
     const { name, email, company, role, size, intent, msg } = body;
