@@ -1,15 +1,14 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   if (!process.env.RESEND_API_KEY) {
     console.error("CRITICAL: RESEND_API_KEY is not defined in environment variables.");
     return Response.json({ error: "Server configuration error: Missing API Key" }, { status: 500 });
   }
   try {
     const body = await req.json();
-    console.log("Incoming form submission:", body);
     const { name, email, company, role, size, intent, msg } = body;
 
     // Send both emails in parallel
@@ -109,15 +108,11 @@ export async function POST(req) {
     ]);
 
     if (notification.error || acknowledgement.error) {
-      console.error("Resend Error - Notification:", notification.error);
-      console.error("Resend Error - Acknowledgement:", acknowledgement.error);
       return Response.json({ error: notification.error || acknowledgement.error }, { status: 500 });
     }
 
-    console.log("Emails sent successfully:", { notification: notification.data, acknowledgement: acknowledgement.data });
     return Response.json({ notification: notification.data, acknowledgement: acknowledgement.data });
   } catch (error) {
-    console.error("API Route Error:", error);
     return Response.json({ error: error.message }, { status: 500 });
   }
 }

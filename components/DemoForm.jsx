@@ -40,7 +40,6 @@ export default function DemoForm({ className }) {
       setStatus("sending");
       
       try {
-        console.log("Submitting form to /api/send...", form);
         const response = await fetch("/api/send", {
           method: "POST",
           headers: { 
@@ -49,21 +48,15 @@ export default function DemoForm({ className }) {
           body: JSON.stringify(form),
         });
 
-        console.log("Response status:", response.status);
-
         if (response.ok) {
-          const result = await response.json();
-          console.log("Submission successful:", result);
           setStatus("success");
           setSent(true);
         } else {
           const errData = await response.json().catch(() => ({}));
-          console.error("Submission failed:", errData);
           setServerError(errData.error || "Something went wrong.");
           setStatus("error");
         }
       } catch (error) {
-        console.error("Network or catch error:", error);
         setServerError("Connection error. Please check your internet.");
         setStatus("error");
       }
