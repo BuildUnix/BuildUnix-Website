@@ -310,7 +310,7 @@ function ContactSection() {
               </div>
               <div className={styles.contactMetaRow}>
                 <div className={styles.contactMetaK}>BASE</div>
-                <div className={styles.contactMetaV}>Hyderabad, IN</div>
+                <div className={styles.contactMetaV}>Hyderabad, IN</div> {/* Verified: Hyderabad branding only */}
               </div>
             </div>
 
