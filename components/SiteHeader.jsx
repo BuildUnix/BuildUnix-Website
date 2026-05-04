@@ -182,7 +182,7 @@ export default function SiteHeader() {
         <div className={`containerWide ${styles.inner}`}>
           <Link href="/" className={styles.logo} aria-label="BuildUNIX">
             <Image 
-              src="/brand/buildunix-logo.webp" 
+              src="/brand/buildunix-logo 2.svg" 
               alt="BuildUNIX" 
               className={styles.brandLogoImg} 
               width={160}
