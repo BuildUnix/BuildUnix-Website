@@ -99,25 +99,30 @@
   gap: 0.2em;
   flex-wrap: wrap;
   justify-content: center;
+  min-height: 1.1em;
 }
 
 .twRotator {
-  color: var(--accent-on-bg);
-  display: inline-block;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-on-bg);
   font-style: normal;
-  min-width: 0.5em;
   white-space: nowrap;
 }
+
 .twRotator::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: 8%;
-  height: 10%;
-  background: color-mix(in oklab, var(--accent) 28%, transparent);
-  z-index: -1;
-  border-radius: 4px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-on-bg);
+  opacity: 0.15;
 }
+
+
 
 .twCaret {
   display: inline-block;

@@ -4,34 +4,40 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "@/app/home.module.css";
 import { companyEmail } from "@/lib/site-content";
-import DemoForm from "@/components/DemoForm";
-import BuildunixCommunitySection from "@/components/buildunix-community/index";
+import dynamic from "next/dynamic";
+const DemoForm = dynamic(() => import("@/components/DemoForm"), { ssr: false });
+
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /* ── Typewriter ─────────────────────────────────────── */
 function Typewriter({ words, typeMs = 75, eraseMs = 40, holdMs = 1400 }) {
   const [i, setI] = useState(0);
-  const [txt, setTxt] = useState("");
-  const [phase, setPhase] = useState("type");
+  const [txt, setTxt] = useState(words[0]);
+  const [phase, setPhase] = useState("hold"); // Start on hold for CLS
 
   useEffect(() => {
     const word = words[i];
     let t;
-    if (phase === "type") {
+
+    if (phase === "hold") {
+      t = setTimeout(() => setPhase("erase"), holdMs);
+    } else if (phase === "type") {
       if (txt.length < word.length) {
         t = setTimeout(() => setTxt(word.slice(0, txt.length + 1)), typeMs);
       } else {
-        t = setTimeout(() => setPhase("erase"), holdMs);
+        setPhase("hold");
       }
-    } else {
+    } else if (phase === "erase") {
       if (txt.length > 0) {
-        t = setTimeout(() => setTxt(txt.slice(0, -1)), eraseMs);
+        t = setTimeout(() => setTxt(word.slice(0, txt.length - 1)), eraseMs);
       } else {
-        setI((i + 1) % words.length);
+        setI((prev) => (prev + 1) % words.length);
         setPhase("type");
       }
     }
+
     return () => clearTimeout(t);
   }, [txt, phase, i, words, typeMs, eraseMs, holdMs]);
 
@@ -304,7 +310,7 @@ function ContactSection() {
               </div>
               <div className={styles.contactMetaRow}>
                 <div className={styles.contactMetaK}>BASE</div>
-                <div className={styles.contactMetaV}>Bengaluru · Hyderabad</div>
+                <div className={styles.contactMetaV}>Hyderabad, IN</div>
               </div>
             </div>
 

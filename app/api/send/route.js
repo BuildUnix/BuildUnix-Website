@@ -109,7 +109,7 @@ export async function POST(req) {
               </p>
             </div>
             <div style="background-color: #fcfcfc; padding: 20px; text-align: center; font-size: 12px; color: #bbb; border-top: 1px solid #eee;">
-              Hyderabad · India
+              Hyderabad, IN
             </div>
           </div>
         `,

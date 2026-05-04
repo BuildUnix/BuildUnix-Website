@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import styles from "@/components/SiteHeader.module.css";
@@ -179,9 +180,16 @@ export default function SiteHeader() {
       {/* Content Layer */}
       <div className={styles.navContent}>
         <div className={`containerWide ${styles.inner}`}>
-          <div className={styles.logo} aria-label="BuildUNIX">
-            <img src="/brand/buildunix-logo 2.svg" alt="BuildUNIX" className={styles.brandLogoImg} />
-          </div>
+          <Link href="/" className={styles.logo} aria-label="BuildUNIX">
+            <Image 
+              src="/brand/buildunix-logo.webp" 
+              alt="BuildUNIX" 
+              className={styles.brandLogoImg} 
+              width={160}
+              height={40}
+              priority
+            />
+          </Link>
 
           <nav className={styles.desktopNav} aria-label="Primary" ref={navRef} onMouseLeave={handleMouseLeave}>
             {/* Sliding Liquid Glass Bubble */}

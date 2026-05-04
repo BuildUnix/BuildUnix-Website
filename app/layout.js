@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/app/globals.css";
 import PageTransition from "@/components/PageTransition";
-import ParticlesBackground from "@/components/ParticlesBackground";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
@@ -13,7 +12,7 @@ import { softwareApplicationJsonLd } from "@/lib/seo";
 
 const headingFont = Syne({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["700", "800"],
   display: "swap",
   preload: true,
   variable: "--font-heading"
@@ -21,7 +20,7 @@ const headingFont = Syne({
 
 const bodyFont = Epilogue({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   display: "swap",
   preload: true,
   variable: "--font-body"
@@ -29,7 +28,7 @@ const bodyFont = Epilogue({
 
 const monoFont = DM_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   display: "swap",
   preload: true,
   variable: "--font-mono"
@@ -40,9 +39,9 @@ export const metadata = {
   title: siteMetadata.homeTitle,
   description: siteMetadata.homeDescription,
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/apple-touch-icon.png"
+    icon: "/brand/buildunix-icon.webp",
+    shortcut: "/brand/buildunix-icon.webp",
+    apple: "/brand/buildunix-icon.webp"
   },
   alternates: {
     canonical: "/"
@@ -83,18 +82,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark">
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="shortcut icon" href="/favicon.png" />
-        <meta name="msapplication-TileImage" content="/favicon.png" />
-        <link
-          rel="preload"
-          href="/media/hero/buildunix-hero-poster.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
+        <link rel="preconnect" href="https://api.landinghero.ai" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        <link rel="icon" type="image/webp" href="/brand/buildunix-icon.webp" />
+        <link rel="apple-touch-icon" href="/brand/buildunix-icon.webp" />
+        <link rel="shortcut icon" href="/brand/buildunix-icon.webp" />
+        <meta name="msapplication-TileImage" content="/brand/buildunix-icon.webp" />
+
       </head>
       <body
         className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
@@ -122,7 +118,7 @@ export default function RootLayout({ children }) {
         <Script 
           src="https://api.landinghero.ai/public/assistant-widget.js" 
           data-project-id="mDOm7vPZd4sZ5qup3Z88"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Analytics />
         <SpeedInsights />

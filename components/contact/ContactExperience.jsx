@@ -18,9 +18,9 @@ export default function ContactExperience() {
               <span className="eyebrowRule" aria-hidden="true" />
               Book a Pilot
             </span>
-            <SplitTextReveal as="h1" className={styles.heroTitle} type="words">
+            <h1 className={`${styles.heroTitle} ${styles.fadeInUp}`}>
               Let&apos;s show you BuildUNIX on a real site.
-            </SplitTextReveal>
+            </h1>
             <p className={styles.heroBody}>
               <BrandText text="30 minutes. No sales pressure. A live walkthrough of the platform on an active construction project." />
             </p>

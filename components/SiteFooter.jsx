@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/components/SiteFooter.module.css";
 import { footerColumns, siteMetadata } from "@/lib/site-content";
 
@@ -9,14 +10,16 @@ export default function SiteFooter() {
         <div className={styles.grid}>
           <div className={styles.brandColumn}>
             <div className={styles.logo} aria-label="BuildUNIX">
-              <img
-                src="/brand/buildunix-logo 2.svg"
+              <Image
+                src="/brand/buildunix-logo.webp"
                 alt="BuildUNIX"
                 className={styles.brandLogoImg}
+                width={140}
+                height={35}
               />
             </div>
             <p className={styles.tagline}>{siteMetadata.tagline}</p>
-            <p className={styles.meta}>Hyderabad, India · 2026</p>
+            <p className={styles.meta}>Hyderabad, IN · 2026</p>
           </div>
 
           {footerColumns.map((column) => (
