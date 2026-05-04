@@ -9,7 +9,7 @@ export async function POST(req) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
-    const { name, email, company, role, size, intent, msg, siteLocation, siteDescription } = body;
+    const { name, email, company, role, size, intent, msg, siteLocation } = body;
 
     const logoUrl = "https://build-unix-website.vercel.app/brand/buildunix-logo.png";
 
@@ -59,12 +59,7 @@ export async function POST(req) {
             </table>
 
             <div style="margin-top: 24px; padding: 20px; background: #f8f8f8; border-radius: 8px; border-left: 4px solid #E8690A;">
-              <strong style="display: block; margin-bottom: 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Site Description</strong>
-              <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${siteDescription || "No details provided."}</p>
-            </div>
-
-            <div style="margin-top: 24px; padding: 20px; background: #f8f8f8; border-radius: 8px; border-left: 4px solid #666;">
-              <strong style="display: block; margin-bottom: 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Message / Pain Points</strong>
+              <strong style="display: block; margin-bottom: 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Project Details / Pain Points</strong>
               <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${msg || "No additional details provided."}</p>
             </div>
 
@@ -89,10 +84,7 @@ export async function POST(req) {
             <div style="padding: 40px;">
               <h2 style="font-size: 22px; margin-top: 0;">Thanks for your interest, ${name.split(" ")[0]}.</h2>
               <p style="line-height: 1.6; color: #444;">
-                We've received your request for a BuildUNIX pilot for <strong>${company}</strong> at your <strong>${siteLocation}</strong> project.
-              </p>
-              <p style="line-height: 1.6; color: #444;">
-                Our team is reviewing your project details: <em>"${siteDescription || "Standard pilot configuration"}"</em>.
+                We've received your request for a BuildUNIX pilot for <strong>${company}</strong> at your <strong>${siteLocation}</strong> project. Our team is reviewing your details and will be in touch shortly.
               </p>
               <p style="line-height: 1.6; color: #444;">
                 A BuildUNIX engineer will reach out to you at this email address within 24 hours to schedule your walkthrough and discuss the next steps for your 30-day free pilot.

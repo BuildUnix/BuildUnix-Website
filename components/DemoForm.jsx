@@ -7,7 +7,7 @@ export default function DemoForm({ className }) {
   const [form, setForm] = useState({
     name: "", email: "", company: "", role: "",
     size: "Mid (5–20 sites)", intent: "", msg: "",
-    siteLocation: "", siteDescription: "",
+    siteLocation: "",
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle, sending, success, error
@@ -151,21 +151,10 @@ export default function DemoForm({ className }) {
           <div className={styles.fieldErr}>{errors.siteLocation}</div>
         </div>
         <div className={`${styles.field} ${styles.fieldFull}`}>
-          <label className={styles.fieldLabel}>Site description</label>
-          <textarea
-            className={styles.fieldTextarea}
-            placeholder="e.g. 3 blocks, 450 residential units, RCC framework stage..."
-            value={form.siteDescription}
-            onChange={update("siteDescription")}
-            disabled={status === "sending"}
-          />
-          <div className={styles.fieldErr}></div>
-        </div>
-        <div className={`${styles.field} ${styles.fieldFull}`}>
           <label className={styles.fieldLabel}>Anything else?</label>
           <textarea
             className={styles.fieldTextarea}
-            placeholder="Tell us about current pain points, timelines…"
+            placeholder="Tell us about your site, current pain points, timelines…"
             value={form.msg}
             onChange={update("msg")}
             disabled={status === "sending"}
