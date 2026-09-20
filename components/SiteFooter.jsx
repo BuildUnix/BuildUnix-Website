@@ -27,7 +27,7 @@ export default function SiteFooter() {
               <h2 className={styles.columnTitle}>{column.title}</h2>
               <div className={styles.linkList}>
                 {column.links.map((link) => {
-                  const isExternal = link.href.startsWith("mailto:");
+                  const isExternal = link.href.startsWith("mailto:") || link.href.startsWith("http");
                   return isExternal ? (
                     <a key={link.label} href={link.href} className={styles.footerLink}>{link.label}</a>
                   ) : (
