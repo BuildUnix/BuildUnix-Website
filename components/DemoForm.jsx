@@ -177,7 +177,7 @@ export default function DemoForm({ className }) {
         {status === "sending" ? "Sending..." : "Book a pilot →"}
       </button>
       <p className={styles.formNote}>
-        NO CREDIT CARD · SHIP IN UNDER A WEEK · FREE 30-DAY PILOT
+        SHIP IN UNDER A WEEK · FREE 30-DAY PILOT
       </p>
     </form>
   );

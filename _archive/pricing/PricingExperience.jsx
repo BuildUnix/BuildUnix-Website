@@ -21,7 +21,7 @@ function HeroSection() {
         </SplitTextReveal>
         <Reveal y={16} delay={0.15}>
           <p className={styles.heroBody}>
-            Start with a free 30-day pilot on your first project. No credit card, no commitment. A BuildUNIX engineer configures everything.
+            Start with a free 30-day pilot on your first project. A BuildUNIX engineer configures everything.
           </p>
         </Reveal>
         <Reveal y={12} delay={0.25}>
@@ -140,7 +140,7 @@ function ComparisonSection() {
 /* ── Trust Strip ────────────────────────────────────── */
 function TrustSection() {
   const points = [
-    { label: "No credit card", body: "The 30-day pilot is fully free. No payment info required to get started." },
+    { label: "Free 30-day pilot", body: "The 30-day pilot is fully free. A BuildUNIX engineer gets your site set up." },
     { label: "Ships in < 7 days", body: "A BuildUNIX engineer configures your project and trains the team. Ready in a week." },
     { label: "Cancel any time", body: "No lock-in contracts on Professional. Cancel with 30 days' notice, no penalty." },
     { label: "₹0 manual reporting", body: "AI daily reports are included in every paid plan. No extra cost, no manual effort." },
@@ -214,7 +214,7 @@ function CtaSection() {
             <BrandText text="Your first pilot is free. Ship in under a week." />
           </h2>
           <p className={styles.ctaBody}>
-            No credit card. No commitment. A BuildUNIX engineer sets everything up and stays available throughout the 30 days.
+            A BuildUNIX engineer sets everything up and stays available throughout the 30 days.
           </p>
           <div className={styles.ctaActions}>
             <Link href="/contact" className="button buttonPrimary">
