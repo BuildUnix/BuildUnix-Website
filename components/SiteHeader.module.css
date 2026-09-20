@@ -218,23 +218,23 @@
 .headerCta {
   padding: 8px 18px;
   border-radius: 999px;
-  background: #111;
+  background: var(--accent);
   color: #fff;
   font-family: var(--ff-body);
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(232, 105, 10, 0.25);
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
 
 .headerCta:hover {
-  background: #333;
+  background: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(232, 105, 10, 0.35);
 }
 
 .headerCtaArrow {
@@ -247,11 +247,13 @@
 }
 
 [data-theme="light"] .headerCta {
-  background: #111;
+  background: var(--accent);
   color: #fff;
+  box-shadow: 0 4px 14px rgba(232, 105, 10, 0.25);
 }
 [data-theme="light"] .headerCta:hover {
-  background: #333;
+  background: var(--accent-dark);
+  box-shadow: 0 8px 24px rgba(232, 105, 10, 0.35);
 }
 
 .themeToggle {
