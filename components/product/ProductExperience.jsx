@@ -416,35 +416,6 @@ function FeaturesSection() {
             </Reveal>
           ))}
         </div>
-
-        {/* Daily Report Coming Soon */}
-        <div style={{
-          marginTop: "2.5rem",
-          padding: "1.25rem 1.75rem",
-          background: "rgba(61, 133, 232, 0.06)",
-          border: "1px solid rgba(61, 133, 232, 0.2)",
-          borderRadius: "12px",
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          color: "var(--text-primary, #f1f5f9)"
-        }}>
-          <span style={{
-            fontSize: "0.75rem",
-            fontWeight: "700",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            padding: "0.25rem 0.6rem",
-            borderRadius: "6px",
-            background: "rgba(61, 133, 232, 0.2)",
-            color: "#60a5fa"
-          }}>
-            Phase 2
-          </span>
-          <span style={{ fontSize: "0.9375rem" }}>
-            <strong>Coming soon:</strong> a daily summary of the site, sent to your phone.
-          </span>
-        </div>
       </div>
     </section>
   );
@@ -453,38 +424,30 @@ function FeaturesSection() {
 /* ── Roles Section ──────────────────────────────────── */
 function RolesSection() {
   return (
-    <section className="section" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}>
+    <section className={`section ${styles.rolesSection}`}>
       <div className="containerWide">
-        <div className="sectionLabel">ROLES</div>
-        <h2 className="sectionTitle" style={{ marginBottom: "1rem" }}>
-          The right view for <em>every person</em>.
-        </h2>
-        <p className="sectionBody" style={{ marginBottom: "2.5rem" }}>
-          Each team member opens the app and sees exactly what their job needs.
-        </p>
+        <Reveal className={styles.rolesHead}>
+          <span className="sectionLabel">
+            <span className="eyebrowRule" aria-hidden="true" />
+            ROLES
+          </span>
+          <h2 className="sectionTitle">
+            The right view for <em>every person</em>.
+          </h2>
+          <p className="sectionBody">
+            Each team member opens the app and sees exactly what their job needs.
+          </p>
+        </Reveal>
 
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.25rem"
-        }}>
-          {roles.map((r) => (
-            <div
-              key={r.id}
-              style={{
-                padding: "1.25rem 1.5rem",
-                background: "rgba(255, 255, 255, 0.02)",
-                border: "1px solid rgba(255, 255, 255, 0.06)",
-                borderRadius: "10px"
-              }}
-            >
-              <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem", color: "var(--text-primary, #fff)" }}>
-                {r.title}
-              </h3>
-              <p style={{ fontSize: "0.9375rem", color: "var(--text-muted, #94a3b8)", lineHeight: "1.5", margin: 0 }}>
-                {r.summary}
-              </p>
-            </div>
+        <div className={styles.rolesGrid}>
+          {roles.map((r, i) => (
+            <Reveal key={r.id} className={styles.roleCard} delay={i * 0.06} y={24}>
+              <div className={styles.roleTop}>
+                <span className={styles.roleTag}>Role 0{i + 1}</span>
+              </div>
+              <h3 className={styles.roleTitle}>{r.title}</h3>
+              <p className={styles.roleSummary}>{r.summary}</p>
+            </Reveal>
           ))}
         </div>
       </div>
