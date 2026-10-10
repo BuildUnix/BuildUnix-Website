@@ -27,25 +27,11 @@
 
 .heroBody {
   max-width: 42rem;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   color: var(--text-2);
   font-size: clamp(1.05rem, 1.4vw, 1.18rem);
   line-height: 1.65;
   text-wrap: pretty;
-}
-
-.heroActions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.heroNote {
-  margin-top: 1.25rem;
-  font-size: 0.9375rem;
-  color: var(--text-muted);
 }
 
 /* ── Reasons Section ────────────────────────────────── */

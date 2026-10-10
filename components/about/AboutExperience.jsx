@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SplitTextReveal from "@/components/SplitTextReveal";
 import styles from "@/app/about/about.module.css";
@@ -26,17 +25,6 @@ export default function AboutExperience() {
           </SplitTextReveal>
           <p className={styles.heroBody}>
             On most sites, work runs on calls, chats and Excel. BuildUNIX puts everyone in one app, so you can see what is done, what is late and who is responsible.
-          </p>
-          <div className={styles.heroActions}>
-            <Link href="/contact" className="button buttonPrimary">
-              Book a pilot on one tower →
-            </Link>
-            <Link href="/product" className="button buttonGhost">
-              See how the app works
-            </Link>
-          </div>
-          <p className={styles.heroNote}>
-            No upfront overhaul. Run BuildUNIX on one tower alongside your current workflow.
           </p>
         </div>
       </section>
