@@ -609,8 +609,8 @@
   border: 1px solid var(--border-strong);
   border-radius: 10px;
   padding: 14px 16px;
-  font-family: var(--ff-mono);
-  font-size: 13px;
+  font-family: var(--ff-body);
+  font-size: 15px;
   color: var(--text);
   outline: none;
   transition: all 0.25s cubic-bezier(.2,.8,.2,1);
