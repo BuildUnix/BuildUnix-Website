@@ -3,9 +3,9 @@ import { siteMetadata } from "@/lib/site-content";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Product — BuildUNIX Construction Execution Platform",
+  title: "Product — BuildUNIX Construction Site Management",
   description:
-    "See how BuildUNIX enforces phase-locked construction sequencing, mandates tamper-proof photo evidence, tracks snags formally, and generates automated daily reports automatically.",
+    "See how BuildUNIX gives you a clear view of your construction site: ready-made stages, photo proof, PMC approvals, and live status on every block.",
   path: "/product"
 });
 

@@ -79,7 +79,7 @@ export async function POST(req) {
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background-color: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; color: #161210;">
             <div style="background-color: #fcfcfc; padding: 40px; text-align: center; border-bottom: 1px solid #eee;">
               <img src="${logoUrl}" alt="BuildUNIX Logo" style="width: 220px; height: auto;" />
-              <p style="color: #999; margin: 15px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Digitising Construction Execution</p>
+              <p style="color: #999; margin: 15px 0 0 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Construction site management app, India</p>
             </div>
             <div style="padding: 40px;">
               <h2 style="font-size: 22px; margin-top: 0;">Thanks for your interest, ${name.split(" ")[0]}.</h2>
@@ -87,15 +87,15 @@ export async function POST(req) {
                 We've received your request for a BuildUNIX pilot for <strong>${company}</strong> at your <strong>${siteLocation}</strong> project. Our team is reviewing your details and will be in touch shortly.
               </p>
               <p style="line-height: 1.6; color: #444;">
-                A BuildUNIX engineer will reach out to you at this email address shortly to schedule your walkthrough and discuss the next steps for your 30-day free pilot.
+                A BuildUNIX team member will reach out to you at this email address shortly to schedule your walkthrough and discuss the next steps for your pilot.
               </p>
               
               <div style="margin: 32px 0; padding: 24px; background-color: #f8f8f8; border-radius: 8px; border-left: 4px solid #E8690A;">
                 <h3 style="margin: 0 0 12px 0; font-size: 16px;">What happens next?</h3>
                 <ol style="margin: 0; padding-left: 20px; color: #666; line-height: 1.8;">
-                  <li>Project review & configuration</li>
-                  <li>Onboarding session for your PMC team</li>
-                  <li>First site goes live (typically within 7 days)</li>
+                  <li>We review your project details and set up your stages</li>
+                  <li>30-minute walkthrough for your team</li>
+                  <li>Your site goes live (about one week)</li>
                 </ol>
               </div>
 

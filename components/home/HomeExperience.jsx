@@ -1,53 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styles from "@/app/home.module.css";
-import { companyEmail } from "@/lib/site-content";
+import { companyEmail, homeBenefits } from "@/lib/site-content";
 import dynamic from "next/dynamic";
 const DemoForm = dynamic(() => import("@/components/DemoForm"), { ssr: false });
 
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-/* ── Typewriter ─────────────────────────────────────── */
-function Typewriter({ words, typeMs = 75, eraseMs = 40, holdMs = 1400 }) {
-  const [i, setI] = useState(0);
-  const [txt, setTxt] = useState(words[0]);
-  const [phase, setPhase] = useState("hold"); // Start on hold for CLS
-
-  useEffect(() => {
-    const word = words[i];
-    let t;
-
-    if (phase === "hold") {
-      t = setTimeout(() => setPhase("erase"), holdMs);
-    } else if (phase === "type") {
-      if (txt.length < word.length) {
-        t = setTimeout(() => setTxt(word.slice(0, txt.length + 1)), typeMs);
-      } else {
-        setPhase("hold");
-      }
-    } else if (phase === "erase") {
-      if (txt.length > 0) {
-        t = setTimeout(() => setTxt(word.slice(0, txt.length - 1)), eraseMs);
-      } else {
-        setI((prev) => (prev + 1) % words.length);
-        setPhase("type");
-      }
-    }
-
-    return () => clearTimeout(t);
-  }, [txt, phase, i, words, typeMs, eraseMs, holdMs]);
-
-  return (
-    <span className={styles.twRotator}>
-      {txt}
-      <span className={styles.twCaret} aria-hidden="true" />
-    </span>
-  );
-}
 
 /* ── Hero ───────────────────────────────────────────── */
 function HeroSection() {
@@ -70,55 +31,38 @@ function HeroSection() {
       <div className={styles.heroInner}>
         <div className={styles.heroBadge}>
           <span className={styles.heroDot} />
-          <span>Pilots shipping in under 7 days</span>
+          <span>Construction site management app, India</span>
         </div>
 
         <h1 className={styles.heroTitle}>
-          <span>Construction software, built to</span>
-          <br />
-          <span className={styles.twLine}>
-            <Typewriter words={["improve QoS.", "reduce time.", "improve profits."]} />
-          </span>
+          Know what is happening on your site. Every day.
         </h1>
 
         <p className={styles.heroLede}>
-          BuildUNIX digitizes construction execution — phase-locked schedules, evidence-backed
-          handoffs, and a logic engine that removes the churn draining your time, margin, and
-          quality.
+          BuildUNIX is one app for owners, PMCs, engineers and contractors. Everyone updates work and uploads photos. Each stage is approved before the next one starts.
         </p>
 
         <div className={styles.heroActions}>
           <div className={styles.heroCta}>
-            <Link href="/product" className={`button buttonGhost ${styles.heroBtn}`} onMouseMove={onBtnMove}>
-              See the product
+            <Link href="/contact" className="button buttonPrimary" onMouseMove={onBtnMove}>
+              Book a pilot
+            </Link>
+            <Link href="/product#how-it-works" className={`button buttonGhost ${styles.heroBtn}`} onMouseMove={onBtnMove}>
+              See how it works
             </Link>
           </div>
 
-          <div className={styles.heroMeta}>
-            <div className={styles.heroMetaItem}>
-              <div className={styles.heroMetaLbl}>Pilot timeline</div>
-              <div className={styles.heroMetaVal}><em>&lt; 7 days</em></div>
-            </div>
-            <div className={styles.heroMetaItem}>
-              <div className={styles.heroMetaLbl}>Avg. delay reduction</div>
-              <div className={styles.heroMetaVal}><em>31%</em></div>
-            </div>
-            <div className={styles.heroMetaItem}>
-              <div className={styles.heroMetaLbl}>Margin recovery</div>
-              <div className={styles.heroMetaVal}><em>₹1.2 Cr / site</em></div>
-            </div>
-          </div>
+          <p className={styles.heroProofLine} style={{ marginTop: "1rem", color: "var(--text-muted, #94a3b8)", fontSize: "0.9375rem" }}>
+            Running now on a residential project in Hyderabad.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-
-/* ── Highlights ─────────────────────────────────────── */
-function HighlightsSection() {
-  const cardRef = useRef(null);
-
+/* ── Benefits ───────────────────────────────────────── */
+function BenefitsSection() {
   useEffect(() => {
     let raf = null;
     const handler = (e) => {
@@ -141,27 +85,6 @@ function HighlightsSection() {
     };
   }, []);
 
-  const items = [
-    {
-      ix: "[01] PHASE-LOCK",
-      title: "No phase starts without evidence.",
-      body: "Our logic engine enforces prerequisites across phase-locked workflows × 5 trades. Prolonged delays become impossible — every handoff is provable.",
-      href: "/product#phase-lock",
-    },
-    {
-      ix: "[02] LIVE OPS",
-      title: "Site proof from the crew, not the office.",
-      body: "GPS-pinned, time-stamped, cryptographically signed photo evidence. Reviewed in minutes from your phone or dashboard.",
-      href: "/product#ops",
-    },
-    {
-      ix: "[03] MONEY LOGIC",
-      title: "Stop the churn of money mismanagement.",
-      body: "Automated reconciliation between BOQ, site consumption, and vendor invoices. Leakage gets flagged before it compounds.",
-      href: "/product#features",
-    },
-  ];
-
   return (
     <section id="why" className={styles.highlightsSection}>
       <div className="containerWide">
@@ -169,35 +92,34 @@ function HighlightsSection() {
           <div>
             <div className="sectionLabel">WHY BUILDUNIX</div>
             <h2 className={`sectionTitle ${styles.sectionH2}`}>
-              Three places we <em>remove the churn</em>.
+              Three ways we keep sites on track.
             </h2>
           </div>
           <p className={styles.sectionLede}>
-            Most construction software digitizes the paperwork. BuildUNIX digitizes the logic
-            behind the work — where time, quality, and money actually leak.
+            Clear accountability, instant updates from the field, and fewer costly mistakes.
           </p>
         </div>
 
         <div className={styles.hlGrid}>
-          {items.map((it) => (
+          {homeBenefits.map((it) => (
             <Link key={it.ix} href={it.href} className={styles.hlCard}>
               <div className={styles.hlIx}>{it.ix}</div>
               <h3 className={styles.hlTitle}>{it.title}</h3>
               <p className={styles.hlBody}>{it.body}</p>
-              <span className={styles.hlMore}>Learn more →</span>
+              <span className={styles.hlMore}>See details →</span>
             </Link>
           ))}
         </div>
 
         <div className={styles.intentStrip}>
           <Link href="/contact" className={styles.intentChip}>
-            <span className={styles.intentK}>→</span> Improve QoS
+            <span className={styles.intentK}>→</span> Accountability
           </Link>
           <Link href="/contact" className={styles.intentChip}>
-            <span className={styles.intentK}>→</span> Reduce time
+            <span className={styles.intentK}>→</span> Save time
           </Link>
           <Link href="/contact" className={styles.intentChip}>
-            <span className={styles.intentK}>→</span> Improve profits
+            <span className={styles.intentK}>→</span> Save money
           </Link>
         </div>
       </div>
@@ -205,59 +127,59 @@ function HighlightsSection() {
   );
 }
 
-/* ── Differentiators ────────────────────────────────── */
-function DifferentiatorsSection() {
+/* ── Before and After ───────────────────────────────── */
+function BeforeAfterSection() {
+  const withoutItems = [
+    "Photos get lost in WhatsApp.",
+    "Updates come late.",
+    "Nobody is sure who was supposed to do what.",
+    "Excel sheets are out of date."
+  ];
+
+  const withItems = [
+    "One app.",
+    "Photos with date, time and place.",
+    "Clear approvals.",
+    "Everyone sees the same status."
+  ];
+
   return (
     <section className={styles.differSection}>
       <div className="containerWide">
         <div className={styles.sectionHead}>
           <div>
-            <div className="sectionLabel">WHY CHOOSE BUILDUNIX</div>
+            <div className="sectionLabel">BEFORE AND AFTER</div>
             <h2 className={`sectionTitle ${styles.sectionH2}`}>
-              Legacy tools slow you down.
-              <br />
-              <em>We built the opposite.</em>
+              Today your site runs on calls and chats.
             </h2>
           </div>
           <p className={styles.sectionLede}>
-            Most construction platforms lock you into rigid templates, stall updates through layered
-            approvals, and fail the moment the site goes offline. BuildUNIX was built for the way
-            work actually happens on the ground.
+            When site updates live in chat groups, work slips through the cracks. BuildUNIX gives your entire team one clear source of truth.
           </p>
         </div>
 
         <div className={styles.differWrap}>
           <div className={styles.differCard}>
-            <div className={styles.differTag}>THE STATUS QUO</div>
-            <h4 className={styles.differH4}>Rigid. Slow. Disconnected.</h4>
+            <div className={styles.differTag}>WITHOUT BUILDUNIX</div>
+            <h4 className={styles.differH4}>Lost messages, late updates, confusion.</h4>
             <div className={styles.differList}>
-              {[
-                ["Rigid templates", "One-size workflow forces you to bend your project to the software, not the other way around."],
-                ["Delayed reports", "Updates crawl through layered approvals, so by the time leadership sees a snag, it's already a week old."],
-                ["No offline accommodation", "The moment site signal drops, the app becomes a paperweight. Crews fall back to WhatsApp and paper."],
-                ["Cosmetic digitization", "Replaces paper forms, ignores the underlying logic where time and money actually leak."],
-              ].map(([strong, rest]) => (
-                <div key={strong} className={`${styles.differRow} ${styles.differBad}`}>
+              {withoutItems.map((text) => (
+                <div key={text} className={`${styles.differRow} ${styles.differBad}`}>
                   <span className={styles.differMk}>✕</span>
-                  <div><strong>{strong}</strong> — {rest}</div>
+                  <div>{text}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div className={`${styles.differCard} ${styles.differUs}`}>
-            <div className={`${styles.differTag} ${styles.differTagUs}`}>THE BUILDUNIX APPROACH</div>
-            <h4 className={styles.differH4}>Flexible. Real-time. Offline-first.</h4>
+            <div className={`${styles.differTag} ${styles.differTagUs}`}>WITH BUILDUNIX</div>
+            <h4 className={styles.differH4}>Clear proof, on-time approvals, one status.</h4>
             <div className={styles.differList}>
-              {[
-                ["Configurable logic", "Workflows adapt to your project structure, trades, and phase dependencies in hours, not quarters."],
-                ["Real-time evidence", "Site proof reaches leadership the instant it's captured. No gatekeepers, no lag, no stale dashboards."],
-                ["Offline-first by design", "Crews capture, sign, and log without signal. The moment connection returns, everything syncs automatically."],
-                ["Logic-based execution", "Our engine prevents phase churn, reconciles money leakage, and enforces quality at the source."],
-              ].map(([strong, rest]) => (
-                <div key={strong} className={`${styles.differRow} ${styles.differGood}`}>
+              {withItems.map((text) => (
+                <div key={text} className={`${styles.differRow} ${styles.differGood}`}>
                   <span className={styles.differMk}>✓</span>
-                  <div><strong>{strong}</strong> — {rest}</div>
+                  <div>{text}</div>
                 </div>
               ))}
             </div>
@@ -268,9 +190,7 @@ function DifferentiatorsSection() {
   );
 }
 
-/* ── Contact ────────────────────────────────────────── */
-
-/* ── Contact ────────────────────────────────────────── */
+/* ── Contact & How It Starts ────────────────────────── */
 function ContactSection() {
   let btnRAF = null;
   const onBtnMove = (e) => {
@@ -286,18 +206,24 @@ function ContactSection() {
     });
   };
 
+  const steps = [
+    { n: 1, t: "You fill a short form.", d: "Tell us a few details about your project and team." },
+    { n: 2, t: "We set up your project in the app.", d: "Your blocks and stages are loaded and ready." },
+    { n: 3, t: "Your team learns it in a 30-minute walkthrough.", d: "Supervisors, PMCs, and contractors learn their views." },
+    { n: 4, t: "Your site goes live.", d: "Your crew starts taking photos and approving stages." },
+  ];
+
   return (
     <section id="contact" className={styles.contactSection}>
       <div className="containerWide">
         <div className={styles.contactWrap}>
           <div className={styles.contactSide}>
-            <div className="sectionLabel">GET STARTED</div>
+            <div className="sectionLabel">PILOT STEPS</div>
             <h3 className={styles.contactTitle}>
-              Book a <em>Pilot</em>.<br />Shipped under a week.
+              How it starts.<br />Live in about one week.
             </h3>
             <p className={styles.contactBody}>
-              Tell us where you&apos;re bleeding — quality, time, or money. We&apos;ll configure
-              BuildUNIX to your workflow and have your first site live in under seven days.
+              Try BuildUNIX on one tower first. We configure the app to your site and show your team how to use it in 30 minutes.
             </p>
             <div className={styles.contactMeta}>
               <div className={styles.contactMetaRow}>
@@ -306,42 +232,20 @@ function ContactSection() {
               </div>
               <div className={styles.contactMetaRow}>
                 <div className={styles.contactMetaK}>SETUP</div>
-                <div className={styles.contactMetaV}><em>7 days</em> · typical pilot</div>
+                <div className={styles.contactMetaV}><em>About 1 week</em></div>
               </div>
               <div className={styles.contactMetaRow}>
                 <div className={styles.contactMetaK}>BASE</div>
-                <div className={styles.contactMetaV}>Hyderabad, IN</div> {/* Verified: Hyderabad branding only */}
+                <div className={styles.contactMetaV}>Hyderabad, IN</div>
               </div>
             </div>
-
           </div>
 
           <div className={styles.proofPanel}>
             <div className={styles.proofTimeline}>
-              <div className={styles.proofLabel}>WHAT HAPPENS NEXT</div>
+              <div className={styles.proofLabel}>HOW IT STARTS</div>
               <div className={styles.timelineSteps}>
-                {[
-                  {
-                    n: 1,
-                    t: "You submit the form",
-                    d: "We review your project type and site count. Usually same day.",
-                  },
-                  {
-                    n: 2,
-                    t: "We configure your workflow",
-                    d: "Phases configured to your workflow. Done in under 48 hours.",
-                  },
-                  {
-                    n: 3,
-                    t: "Your team gets access",
-                    d: "PMC Engineers, Contractors, and Management onboarded with a 30-minute walkthrough.",
-                  },
-                  {
-                    n: 4,
-                    t: "First site goes live",
-                    d: "Typically day 5-7. Your crew starts capturing evidence immediately.",
-                  },
-                ].map((s) => (
+                {steps.map((s) => (
                   <div key={s.n} className={styles.timelineStep}>
                     <div className={styles.timelineIndicator}>
                       <div className={styles.timelineDot}>{s.n}</div>
@@ -360,9 +264,9 @@ function ContactSection() {
 
             <div className={styles.proofStats}>
               {[
-                { v: "< 7 days", l: "Setup time" },
-                { v: "₹0", l: "Setup cost" },
-                { v: "30 days", l: "Free pilot" },
+                { v: "~ 1 week", l: "Setup time" },
+                { v: "1 tower", l: "First pilot" },
+                { v: "30 mins", l: "Team walkthrough" },
               ].map((st) => (
                 <div key={st.l} className={styles.statItem}>
                   <div className={styles.statNum}>{st.v}</div>
@@ -372,7 +276,7 @@ function ContactSection() {
             </div>
 
             <div className={styles.proofTrust}>
-              Tested on a ₹1,200 Cr project · Hyderabad · 2026
+              Running now on a residential project in Hyderabad.
             </div>
           </div>
         </div>
@@ -381,7 +285,7 @@ function ContactSection() {
 
         <div className={styles.contactBottom}>
           <h2 className={styles.contactBottomTitle}>
-            Built for the <em>ground truth</em>.<br />Shipped this week.
+            Try it on one tower first.<br /><em>Book a pilot.</em>
           </h2>
           <div className={styles.contactBottomBtns}>
             <Link
@@ -392,11 +296,11 @@ function ContactSection() {
               Book a pilot →
             </Link>
             <Link
-              href="/product"
+              href="/product#how-it-works"
               className="button buttonGhost"
               onMouseMove={onBtnMove}
             >
-              See the product
+              See how it works
             </Link>
           </div>
         </div>
@@ -468,8 +372,8 @@ export default function HomeExperience() {
   return (
     <>
       <HeroSection />
-      <HighlightsSection />
-      <DifferentiatorsSection />
+      <BenefitsSection />
+      <BeforeAfterSection />
       <ContactSection />
     </>
   );

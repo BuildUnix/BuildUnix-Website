@@ -6,7 +6,7 @@ import styles from "@/app/home.module.css";
 export default function DemoForm({ className }) {
   const [form, setForm] = useState({
     name: "", email: "", company: "", role: "",
-    size: "Mid (5–20 sites)", intent: "", msg: "",
+    size: "1 tower", intent: "", msg: "",
     siteLocation: "",
   });
   const [errors, setErrors] = useState({});
@@ -71,15 +71,15 @@ export default function DemoForm({ className }) {
         <div className={styles.formSuccessTag}>✓ REQUEST RECEIVED</div>
         <h3 className={styles.formSuccessTitle}>Thanks, {form.name.split(" ")[0]}.</h3>
         <p className={styles.formSuccessBody}>
-          We received your request for <strong>{form.intent}</strong>. A BuildUNIX engineer will
-          reach out within 24 hours with next steps.
+          We received your request for <strong>{form.intent}</strong>. A BuildUNIX team member will
+          reach out within 24 hours to schedule your walkthrough.
         </p>
         <button
           className="button buttonGhost"
           onClick={() => { 
             setSent(false); 
             setStatus("idle");
-            setForm({ name: "", email: "", company: "", role: "", size: "Mid (5–20 sites)", intent: "", msg: "" }); 
+            setForm({ name: "", email: "", company: "", role: "", size: "1 tower", intent: "", msg: "", siteLocation: "" }); 
           }}
         >
           Send another
@@ -89,9 +89,9 @@ export default function DemoForm({ className }) {
   }
 
   const intents = [
-    { k: "Improve QoS", d: "Tighter quality control & on-site evidence" },
-    { k: "Reduce time", d: "Eliminate delays & speed up phase handoffs" },
-    { k: "Improve profits", d: "Stop money mismanagement & leakage" },
+    { k: "Accountability", d: "Clear ownership & photo proof on every stage" },
+    { k: "Delays", d: "Spot late work early & speed up PMC approvals" },
+    { k: "Rework", d: "Catch mistakes before the next stage starts" },
   ];
 
   return (
@@ -118,17 +118,17 @@ export default function DemoForm({ className }) {
           <div className={styles.fieldErr}></div>
         </div>
         <div className={`${styles.field} ${styles.fieldFull}`}>
-          <label className={styles.fieldLabel}>Portfolio size</label>
+          <label className={styles.fieldLabel}>Size of your project</label>
           <select className={styles.fieldInput} value={form.size} onChange={update("size")} disabled={status === "sending"}>
-            <option>Small (1–5 sites)</option>
-            <option>Mid (5–20 sites)</option>
-            <option>Large (20–50 sites)</option>
-            <option>Enterprise (50+ sites)</option>
+            <option>1 tower</option>
+            <option>2–5 towers</option>
+            <option>6+ towers</option>
+            <option>Not sure</option>
           </select>
           <div className={styles.fieldErr}></div>
         </div>
         <div className={`${styles.field} ${styles.fieldFull} ${errors.intent ? styles.fieldError : ""}`}>
-          <label className={styles.fieldLabel}>What&apos;s the goal?</label>
+          <label className={styles.fieldLabel}>What do you want to fix?</label>
           <div className={styles.intentGrid}>
             {intents.map((it) => (
               <button
@@ -154,7 +154,7 @@ export default function DemoForm({ className }) {
           <label className={styles.fieldLabel}>Anything else?</label>
           <textarea
             className={styles.fieldTextarea}
-            placeholder="Tell us about your site, current pain points, timelines…"
+            placeholder="Tell us about your project, current bottlenecks, timelines…"
             value={form.msg}
             onChange={update("msg")}
             disabled={status === "sending"}
@@ -177,7 +177,7 @@ export default function DemoForm({ className }) {
         {status === "sending" ? "Sending..." : "Book a pilot →"}
       </button>
       <p className={styles.formNote}>
-        SHIP IN UNDER A WEEK · FREE 30-DAY PILOT
+        LIVE IN ABOUT ONE WEEK · TRY IT ON ONE TOWER
       </p>
     </form>
   );

@@ -40,7 +40,7 @@ export default function SiteFooter() {
         </div>
 
         <div className={styles.bottomStrip}>
-          <div>© 2026 BUILDUNIX · DIGITISING CONSTRUCTION EXECUTION</div>
+          <div>© 2026 BUILDUNIX · CONSTRUCTION SITE MANAGEMENT APP</div>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Reveal from "@/components/Reveal";
 import SplitTextReveal from "@/components/SplitTextReveal";
 import BrandText from "@/components/BrandText";
@@ -11,7 +11,6 @@ import {
   roles,
   statBarItems,
   phaseNames,
-  testimonials,
   faqs,
 } from "@/lib/site-content";
 import styles from "@/app/product/product.module.css";
@@ -64,14 +63,14 @@ const iconMap = {
 };
 
 const STATUS_CONFIG = {
-  locked:    { color: "#6b7e95", label: "Locked" },
-  uploading: { color: "#F0A020", label: "Uploading" },
-  awaiting:  { color: "#3D85E8", label: "Awaiting PMC" },
+  locked:    { color: "#6b7e95", label: "Not started" },
+  uploading: { color: "#F0A020", label: "Work in progress" },
+  awaiting:  { color: "#3D85E8", label: "Waiting for approval" },
   approved:  { color: "#0DAF72", label: "Approved" },
-  snag:      { color: "#E53535", label: "Snag" },
+  snag:      { color: "#E53535", label: "Issue open" },
 };
 
-/* ── Interactive Heatmap ────────────────────────────── */
+/* ── Interactive Colour-Coded Site View ──────────────── */
 const INITIAL_GRID = [
   ["approved","approved","approved"],
   ["approved","approved","awaiting"],
@@ -104,7 +103,7 @@ function InteractiveHeatmap() {
       <div className={styles.heatmapHeader}>
         <div className={styles.heatmapTitle}>
           <span className={styles.heatmapDot} />
-          Live site heatmap
+          Colour-coded site view
         </div>
         <div className={styles.heatmapCols}>
           {TOWERS.map(t => <span key={t}>{t}</span>)}
@@ -173,14 +172,13 @@ function HeroSection() {
             <span className="sectionLabel">PRODUCT OVERVIEW</span>
           </Reveal>
           <SplitTextReveal as="h1" className={styles.heroTitle} type="words">
-            The construction OS. Built for how sites actually run.
+            Built for how construction sites actually run.
           </SplitTextReveal>
           <Reveal y={16} delay={0.18}>
             <p className={styles.heroBody}>
-              <BrandText text="BuildUNIX enforces the sequencing, evidence, accountability, and reporting that Indian PMC firms need — without adding manual overhead to the team." />
+              <BrandText text="BuildUNIX is one app for owners, PMCs, engineers and contractors. Everyone updates work and uploads photos. Each stage is approved before the next one starts." />
             </p>
           </Reveal>
-
         </div>
 
         <Reveal className={styles.heroVisual} x={60} y={20} delay={0.1}>
@@ -191,7 +189,7 @@ function HeroSection() {
       <Reveal className={styles.heroStats} y={20} delay={0.3}>
         {statBarItems.map((s) => (
           <div key={s.label} className={styles.heroStat}>
-            <strong>{s.prefix ?? ""}{s.value}</strong>
+            <strong>{s.value}</strong>
             <span>{s.label}</span>
           </div>
         ))}
@@ -200,7 +198,7 @@ function HeroSection() {
   );
 }
 
-/* ── Phase Lock ─────────────────────────────────────── */
+/* ── Stages & Approvals ─────────────────────────────── */
 function PhaseLockSection() {
   return (
     <section id="phase-lock" className={`section ${styles.phaseLockSection}`}>
@@ -209,18 +207,18 @@ function PhaseLockSection() {
           <Reveal className={styles.phaseLockCopy} x={-50} y={20}>
             <span className="sectionLabel">
               <span className="eyebrowRule" aria-hidden="true" />
-              [01] PHASE-LOCK
+              STAGES & APPROVALS
             </span>
             <h2 className="sectionTitle">
-              No phase starts without <em>evidence</em>.
+              Each stage is approved <em>before the next one starts</em>.
             </h2>
             <p className="sectionBody">
-              Our dependency engine hard-gates every phase template across all trades. No subphase can begin unless its predecessors are PMC-approved. No verbal override. No workaround.
+              A ready list of 14 construction stages, loaded in the right order. Contractors take photos, and the PMC engineer approves the work on the phone before the next stage opens.
             </p>
             <div className={styles.phaseLockStats}>
-              <div className={styles.phaseLockStat}><strong>Template</strong><span>Phase sequencing</span></div>
-              <div className={styles.phaseLockStat}><strong>6</strong><span>Dependency types</span></div>
-              <div className={styles.phaseLockStat}><strong>128+</strong><span>Subphases tracked</span></div>
+              <div className={styles.phaseLockStat}><strong>14</strong><span>Ready-made stages</span></div>
+              <div className={styles.phaseLockStat}><strong>Flexible</strong><span>Custom order</span></div>
+              <div className={styles.phaseLockStat}><strong>100%</strong><span>Photo proof</span></div>
             </div>
           </Reveal>
 
@@ -231,9 +229,9 @@ function PhaseLockSection() {
                 <span className={styles.phaseName}>{name}</span>
                 <span className={styles.phaseStatus}>
                   {i < 4 ? <span className={styles.phaseApproved}>✓ Approved</span>
-                   : i === 4 ? <span className={styles.phaseAwaiting}>● Awaiting PMC</span>
-                   : i === 5 ? <span className={styles.phaseUploading}>↑ Uploading</span>
-                   : <span className={styles.phaseLocked}>⊘ Locked</span>}
+                   : i === 4 ? <span className={styles.phaseAwaiting}>● Waiting for approval</span>
+                   : i === 5 ? <span className={styles.phaseUploading}>↑ Uploading photos</span>
+                   : <span className={styles.phaseLocked}>⊘ Not started</span>}
                 </span>
               </Reveal>
             ))}
@@ -244,22 +242,22 @@ function PhaseLockSection() {
   );
 }
 
-/* ── Live Ops ───────────────────────────────────────── */
+/* ── Live Ops & Photo Proof ─────────────────────────── */
 function LiveOpsSection() {
   const pillars = [
-    { num: "01", title: "Native camera only", body: "Gallery uploads are hard-blocked. Every photo must come from the device camera at capture time — eliminating backdated or substituted evidence." },
-    { num: "02", title: "Cryptographic integrity", body: "GPS coordinates, UTC timestamp, uploader identity, and a SHA-256 hash are embedded the moment the shutter fires. Nothing is editable after capture." },
-    { num: "03", title: "Pre · During · Post slots", body: "Every subphase requires three mandatory photo slots. PMC Engineers review all three before a single tap approves or blocks the next phase." },
-    { num: "04", title: "Offline-first sync", body: "When site signal drops, photos queue on-device with full metadata intact. The moment connection returns, everything syncs in chronological order automatically." },
+    { num: "01", title: "Taken in the app", body: "Every photo is taken directly through the app camera on site. Picking old photos from the gallery is blocked." },
+    { num: "02", title: "Date, time and place", body: "The app records the exact date, time and location when the photo is taken. Clear proof of when work happened." },
+    { num: "03", title: "Before, during and after", body: "Contractors take photos across each step. PMC engineers check them on their phone before approving." },
+    { num: "04", title: "Works without internet", body: "Take photos on site with no signal. They save on the phone and upload automatically once the connection is back." },
   ];
 
   return (
     <section id="ops" className={`section ${styles.opsSection}`}>
       <div className="containerWide">
         <Reveal className={styles.opsHead}>
-          <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />[02] LIVE OPS</span>
-          <h2 className="sectionTitle">Site proof from the crew, <em>not the office</em>.</h2>
-          <p className="sectionBody">Tamper-proof, GPS-pinned, cryptographically signed photo evidence — reviewed in minutes, not days.</p>
+          <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />PHOTO PROOF</span>
+          <h2 className="sectionTitle">Site proof from the crew, <em>on the ground</em>.</h2>
+          <p className="sectionBody">Every photo shows who took it, when and where. Reviewed in seconds from your phone.</p>
         </Reveal>
         <div className={styles.opsPillars}>
           {pillars.map((p, i) => (
@@ -283,10 +281,10 @@ function PhotoEvidenceMock() {
     <div className={styles.photoCard}>
       <div className={styles.photoCardHeader}>
         <div className={styles.photoCardMeta}>
-          <span className={styles.photoCardTag}>PHOTO EVIDENCE</span>
-          <span className={styles.photoCardPhase}>Slab · Floor 3 · Flat A301</span>
+          <span className={styles.photoCardTag}>PHOTO PROOF</span>
+          <span className={styles.photoCardPhase}>Slab Casting · Floor 3 · Flat A301</span>
         </div>
-        <div className={styles.photoCardBadge}>✓ PMC APPROVED</div>
+        <div className={styles.photoCardBadge}>✓ APPROVED BY PMC</div>
       </div>
       <div className={styles.photoSlots}>
         {["PRE", "DURING", "POST"].map((slot, i) => (
@@ -296,9 +294,9 @@ function PhotoEvidenceMock() {
               <>
                 <div className={styles.photoSlotImg}><div className={styles.photoSlotImgInner} /></div>
                 <div className={styles.photoSlotMeta}>
-                  <span>12.9583°N · 77.6401°E</span>
-                  <span>UTC 08:47:22</span>
-                  <span className={styles.photoSlotHash}>SHA-256 · verified</span>
+                  <span>Hyderabad Site · Tower A</span>
+                  <span>Today · 11:45 AM</span>
+                  <span className={styles.photoSlotHash}>Verified on site</span>
                 </div>
               </>
             ) : (
@@ -311,7 +309,7 @@ function PhotoEvidenceMock() {
   );
 }
 
-/* ── How It Works ───────────────────────────────────── */
+/* ── How It Works (4 Steps) ─────────────────────────── */
 function HowItWorksSection() {
   const [active, setActive] = useState(0);
   const step = howItWorksSteps[active];
@@ -322,7 +320,7 @@ function HowItWorksSection() {
         <Reveal className={styles.howHead}>
           <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />HOW IT WORKS</span>
           <SplitTextReveal as="h2" className="sectionTitle" type="words">
-            Five steps from chaos to controlled execution.
+            Four simple steps on site.
           </SplitTextReveal>
         </Reveal>
         <div className={styles.howLayout}>
@@ -355,7 +353,7 @@ function StepVisual({ id }) {
   const visuals = {
     structure: (
       <div className={styles.visualStructure}>
-        {[["PROJECT","Greenfield Residences"],["BLOCKS","Tower A · Tower B · Tower C"],["PHASES","Phase template"],["DEPENDENCIES","Pre-configured ✓"]].map(([k,v]) => (
+        {[["PROJECT","Hyderabad Residential Site"],["BLOCKS","Tower A · Tower B · Tower C"],["STAGES","14 construction stages ready"],["APPROVALS","PMC sign-off on each step ✓"]].map(([k,v]) => (
           <div key={k} className={styles.vsRow}><span className={styles.vsLabel}>{k}</span><span className={styles.vsVal}>{v}</span></div>
         ))}
       </div>
@@ -371,19 +369,19 @@ function StepVisual({ id }) {
       <div className={styles.visualVerify}>
         <div className={styles.vvNotif}>
           <span className={styles.vvNotifDot} />
-          <div><div className={styles.vvNotifTitle}>Inspection required</div><div className={styles.vvNotifSub}>Slab Layout · Floor 3 · A301</div></div>
+          <div><div className={styles.vvNotifTitle}>Approval requested</div><div className={styles.vvNotifSub}>Slab Casting · Floor 3 · Flat A301</div></div>
         </div>
         <div className={styles.vvActions}>
           <span className={styles.vvApprove}>✓ Approve</span>
-          <span className={styles.vvSnag}>⚑ Raise Snag</span>
+          <span className={styles.vvSnag}>⚑ Raise issue (snag)</span>
         </div>
       </div>
     ),
     track: (
       <div className={styles.visualTrack}>
         <div className={styles.vtLegend}>
-          {Object.entries(statusColors).map(([k,v]) => (
-            <span key={k} className={styles.vtLegendItem}><span style={{background:v}} className={styles.vtDot} />{k}</span>
+          {Object.entries(STATUS_CONFIG).map(([k,v]) => (
+            <span key={k} className={styles.vtLegendItem}><span style={{background:v.color}} className={styles.vtDot} />{v.label}</span>
           ))}
         </div>
         <div className={styles.vtGrid}>
@@ -393,31 +391,21 @@ function StepVisual({ id }) {
         </div>
       </div>
     ),
-    report: (
-      <div className={styles.visualReport}>
-        <div className={styles.vrHeader}><span className={styles.vrTag}>DAILY REPORT</span><span className={styles.vrTime}>Delivered 9:00 PM</span></div>
-        <div className={styles.vrLines}>
-          {["Site activity summary","Photo gallery (48 images)","3 open snags","Progress: 63%"].map(l => (
-            <div key={l} className={styles.vrLine}>{l}</div>
-          ))}
-        </div>
-      </div>
-    ),
   };
   return visuals[id] ?? null;
 }
 
-/* ── Features ───────────────────────────────────────── */
+/* ── Features (6 Cards + Coming Soon Callout) ────────── */
 function FeaturesSection() {
   return (
     <section id="features" className={`section ${styles.featuresSection}`}>
       <div className="containerWide">
         <Reveal className={styles.featuresHead}>
-          <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />[03] FEATURES</span>
+          <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />FEATURES</span>
           <SplitTextReveal as="h2" className="sectionTitle" type="words">
-            Stop the churn of <em>money mismanagement</em>.
+            Everything your site team needs.
           </SplitTextReveal>
-          <p className="sectionBody">Six capabilities that enforce accountability where Indian construction projects actually lose time, quality, and margin.</p>
+          <p className="sectionBody">Six key features to keep work moving, catch issues early, and give everyone the right view.</p>
         </Reveal>
         <div className={styles.featuresGrid}>
           {featureCards.map((f, i) => (
@@ -428,66 +416,76 @@ function FeaturesSection() {
             </Reveal>
           ))}
         </div>
+
+        {/* Daily Report Coming Soon */}
+        <div style={{
+          marginTop: "2.5rem",
+          padding: "1.25rem 1.75rem",
+          background: "rgba(61, 133, 232, 0.06)",
+          border: "1px solid rgba(61, 133, 232, 0.2)",
+          borderRadius: "12px",
+          display: "flex",
+          alignItems: "center",
+          gap: "1rem",
+          color: "var(--text-primary, #f1f5f9)"
+        }}>
+          <span style={{
+            fontSize: "0.75rem",
+            fontWeight: "700",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            padding: "0.25rem 0.6rem",
+            borderRadius: "6px",
+            background: "rgba(61, 133, 232, 0.2)",
+            color: "#60a5fa"
+          }}>
+            Phase 2
+          </span>
+          <span style={{ fontSize: "0.9375rem" }}>
+            <strong>Coming soon:</strong> a daily summary of the site, sent to your phone.
+          </span>
+        </div>
       </div>
     </section>
   );
 }
 
-
-
-/* ── Testimonials ───────────────────────────────────── */
-function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const t = testimonials[active];
-
+/* ── Roles Section ──────────────────────────────────── */
+function RolesSection() {
   return (
-    <section className={`section ${styles.testimonialsSection}`}>
+    <section className="section" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}>
       <div className="containerWide">
-        <div className={styles.testimonialsLayout}>
-          <Reveal className={styles.testimonialsLeft} x={-40} y={20}>
-            <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />PROOF</span>
-            <h2 className={styles.testimonialsTitle}>
-              Builders are<br /><em>shipping faster.</em>
-            </h2>
-          </Reveal>
+        <div className="sectionLabel">ROLES</div>
+        <h2 className="sectionTitle" style={{ marginBottom: "1rem" }}>
+          The right view for <em>every person</em>.
+        </h2>
+        <p className="sectionBody" style={{ marginBottom: "2.5rem" }}>
+          Each team member opens the app and sees exactly what their job needs.
+        </p>
 
-          <div className={styles.testimonialsRight}>
-            <Reveal key={active} className={styles.testimonialCard} y={16} delay={0.05}>
-              <blockquote className={styles.testimonialQuote}>
-                &ldquo;{t.quote}&rdquo;
-              </blockquote>
-              <div className={styles.testimonialAttrib}>
-                <div className={styles.testimonialName}>{t.name}</div>
-                <div className={styles.testimonialRole}>{t.role}</div>
-                <div className={styles.testimonialCompany}>{t.company}</div>
-              </div>
-            </Reveal>
-
-            <div className={styles.testimonialsNav}>
-              <div className={styles.testimonialsDots}>
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`${styles.testimonialsDot} ${i === active ? styles.testimonialsDotActive : ""}`}
-                    onClick={() => setActive(i)}
-                    aria-label={`Testimonial ${i + 1}`}
-                  />
-                ))}
-              </div>
-              <div className={styles.testimonialsArrows}>
-                <button
-                  className={styles.testimonialsArrow}
-                  onClick={() => setActive((active - 1 + testimonials.length) % testimonials.length)}
-                  aria-label="Previous"
-                >←</button>
-                <button
-                  className={styles.testimonialsArrow}
-                  onClick={() => setActive((active + 1) % testimonials.length)}
-                  aria-label="Next"
-                >→</button>
-              </div>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "1.25rem"
+        }}>
+          {roles.map((r) => (
+            <div
+              key={r.id}
+              style={{
+                padding: "1.25rem 1.5rem",
+                background: "rgba(255, 255, 255, 0.02)",
+                border: "1px solid rgba(255, 255, 255, 0.06)",
+                borderRadius: "10px"
+              }}
+            >
+              <h3 style={{ fontSize: "1.1rem", marginBottom: "0.5rem", color: "var(--text-primary, #fff)" }}>
+                {r.title}
+              </h3>
+              <p style={{ fontSize: "0.9375rem", color: "var(--text-muted, #94a3b8)", lineHeight: "1.5", margin: 0 }}>
+                {r.summary}
+              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -505,9 +503,9 @@ function FAQSection() {
           <Reveal className={styles.faqLeft} x={-40} y={20}>
             <span className="sectionLabel"><span className="eyebrowRule" aria-hidden="true" />FAQ</span>
             <h2 className={styles.faqTitle}>
-              Answers to the<br /><em>real questions.</em>
+              Frequently asked<br /><em>questions.</em>
             </h2>
-            <p className={styles.faqSubtitle}>Still have questions? Contact our team for more info.</p>
+            <p className={styles.faqSubtitle}>Have more questions? Contact our team for answers.</p>
           </Reveal>
 
           <div className={styles.faqList}>
@@ -533,9 +531,6 @@ function FAQSection() {
   );
 }
 
-/* ── Final CTA ──────────────────────────────────────── */
-
-
 /* ── Root ───────────────────────────────────────────── */
 export default function ProductExperience() {
   return (
@@ -559,7 +554,7 @@ export default function ProductExperience() {
       <LiveOpsSection />
       <HowItWorksSection />
       <FeaturesSection />
-      <TestimonialsSection />
+      <RolesSection />
       <FAQSection />
     </>
   );

@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import BrandText from "@/components/BrandText";
 import DemoForm from "@/components/DemoForm";
 import Reveal from "@/components/Reveal";
-import SplitTextReveal from "@/components/SplitTextReveal";
 import styles from "@/app/contact/contact.module.css";
 import { contactReasons, companyEmail } from "@/lib/site-content";
 
@@ -19,18 +17,18 @@ export default function ContactExperience() {
               Book a Pilot
             </span>
             <h1 className={`${styles.heroTitle} ${styles.fadeInUp}`}>
-              Let&apos;s show you BuildUNIX on a real site.
+              See BuildUNIX on a real site.
             </h1>
             <p className={styles.heroBody}>
-              <BrandText text="30 minutes. No sales pressure. A live walkthrough of the platform on an active construction project." />
+              Book a pilot. We will set it up for one tower and show you how it works. No pressure.
             </p>
           </div>
 
           <Reveal className={styles.heroShowcase} x={70} y={20}>
             <div className={styles.heroSignal}>
-              <span>Demo format</span>
-              <strong>Dependency engine, live heatmap, photo evidence, snag lifecycle.</strong>
-              <p>Built for PMC firms, developers, and project teams evaluating execution control.</p>
+              <span>Walkthrough format</span>
+              <strong>See the app on a live project, your role&apos;s view, and real stage approvals.</strong>
+              <p>Built for owners, PMCs, engineers, and contractors.</p>
             </div>
           </Reveal>
         </div>
@@ -40,13 +38,12 @@ export default function ContactExperience() {
         <div className={`containerWide ${styles.grid}`}>
           <Reveal className={styles.formColumn} x={-60} y={30}>
             <div className={styles.formShell}>
-              <span className={styles.formKicker}>Request access to the walkthrough</span>
+              <span className={styles.formKicker}>Request a walkthrough</span>
               <h2 className={styles.formTitle}>
                 <BrandText text="Book a Pilot" />
               </h2>
               <p className={styles.formBody}>
-                Tell us a little about your firm and project. We&apos;ll reach
-                out to you shortly.
+                Tell us a little about your project. We&apos;ll set it up for one tower and show you how it works.
               </p>
               <DemoForm className="" />
             </div>
@@ -59,8 +56,8 @@ export default function ContactExperience() {
                 {contactReasons.map((reason, index) => (
                   <article key={reason.title} className={styles.reasonCard}>
                     <span>0{index + 1}</span>
-                    <h3><BrandText text={reason.title} /></h3>
-                    <p><BrandText text={reason.body} /></p>
+                    <h3>{reason.title}</h3>
+                    <p>{reason.body}</p>
                   </article>
                 ))}
               </div>
@@ -69,7 +66,7 @@ export default function ContactExperience() {
                   Prefer email? Reach us at{" "}
                   <a href={`mailto:${companyEmail}`}>{companyEmail}</a>
                 </p>
-                <p>We respond ASAP.</p>
+                <p>We respond within 24 hours.</p>
               </div>
             </div>
           </Reveal>
